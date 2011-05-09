@@ -8,4 +8,4 @@ sources = ['Main.cc',
            'Rule.cc',
            'xmalloc.cc']
 
-Program('tjit', sources, CXXFLAGS = ['-g','-Wall','-Wextra'])
+Program('tjit', sources, CXXFLAGS = ['-O3', '-Wall', '-Wextra'])

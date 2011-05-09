@@ -66,6 +66,8 @@ public:
 
     void load64(Register dest, Location source);
     void store8(Location where, uint8_t value);
+    void push64(Register from);
+    void pop64(Register to);
 
     Jump jump32();
     Jump jump32(Condition cond);

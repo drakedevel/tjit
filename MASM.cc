@@ -86,6 +86,19 @@ void MASM::store8(Location where, uint8_t value)
     write8(value);
 }
 
+void MASM::push64(Register from)
+{
+    doREX(REG_NONE, from, false);
+    write8(0x50 + (from.getNumber() & 0x7));
+}
+
+void MASM::pop64(Register to)
+{
+    doREX(REG_NONE, to, false);
+    write8(0x58 + (to.getNumber() & 0x7));
+}
+
+
 MASM::Jump MASM::jump32()
 {
     write8(0xE9);

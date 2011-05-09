@@ -42,10 +42,11 @@ static void *NewBuffer()
     return result;
 }
 
-static void DeleteBuffer(void *buffer)
-{
-    munmap(buffer, 4096);
-}
+// FIXME: Free buffers
+//static void DeleteBuffer(void *buffer)
+//{
+//    munmap(buffer, 4096);
+//}
 
 extern "C"
 {
@@ -279,6 +280,10 @@ void JIT::buildInitialTrampoline()
     mInitialTrampoline = NewBuffer();
     MASM masm(mInitialTrampoline);
 
+    masm.push64(MASM::RBX);
+    masm.push64(MASM::R14);
+    masm.push64(MASM::R15);
+
     masm.move64(MASM::RBX, MASM::RDI);
     masm.move64(MASM::R14, MASM::RSI);
     masm.move64(MASM::R15, MASM::RDX);
@@ -286,6 +291,10 @@ void JIT::buildInitialTrampoline()
     masm.load64(MASM::RAX, MASM::Location(MASM::RDI));
     masm.call(MASM::RAX);
     masm.move64(MASM::RAX, MASM::RBX);
+
+    masm.pop64(MASM::R15);
+    masm.pop64(MASM::R14);
+    masm.pop64(MASM::RBX);
     masm.ret();
 }
 
