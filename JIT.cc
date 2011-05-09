@@ -13,12 +13,13 @@
 using namespace std;
 
 /*
- * RAX: Return address/Temporary
+ * RAX: Temporary / Return address
  * RBX: Tape pointer
- * RSI: Temporary
- * RDI: Temporary
  * R14: Tape lower bound
  * R15: Tape upper bound
+ * RDI: Temporary / Function parameter
+ * RSI: Temporary / Function parameter
+ * RDX: Temporary / Function parameter
  */
 
 static int log2(unsigned int x)
