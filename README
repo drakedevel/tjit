@@ -1,0 +1,20 @@
+Limitations as a whole:
+
+- Link against -lgc if you want garbage collection
+
+Limitations on the parser:
+
+- None known
+
+Limitations on the JIT engine:
+
+- All states receive exactly one page of buffer, which is not bounds-checked
+ - I am too lazy to write an executable memory allocator
+- Code is suboptimal in places
+
+Limitations on the macro assembler:
+
+- R12 and R13 are not usable as a base register of a location
+ - Special cases in encoding which is not handled
+- Unlinked jumps will be NOPs if executed prior to linkage
+- No bounds checking on assembler buffer
