@@ -1,0 +1,4 @@
+*.sxp
+*.o
+.sconsign.dblite
+tjit
